@@ -2,18 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Particle from "../Particle";
-import pdf from "../../Assets/../Assets/Soumyajit_Behera-BIT_MESRA.pdf";
 import { AiOutlineDownload } from "react-icons/ai";
-import { Document, Page, pdfjs } from "react-pdf";
-import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 function ResumeNew() {
   const [width, setWidth] = useState(1200);
+  const pdfPath = `${process.env.PUBLIC_URL}/Param_Parikh_Resume.pdf`;
 
   useEffect(() => {
     setWidth(window.innerWidth);
   }, []);
+
+  const handleDownload = () => {
+    window.open(pdfPath, '_blank');
+  };
 
   return (
     <div>
@@ -22,31 +23,21 @@ function ResumeNew() {
         <Row style={{ justifyContent: "center", position: "relative" }}>
           <Button
             variant="primary"
-            href={pdf}
-            target="_blank"
-            style={{ maxWidth: "250px" }}
+            onClick={handleDownload}
+            style={{ maxWidth: width > 786 ? "250px" : "150px", marginBottom: "20px" }}
           >
             <AiOutlineDownload />
-            &nbsp;Download CV
+            &nbsp;Download Resume
           </Button>
         </Row>
-
         <Row className="resume">
-          <Document file={pdf} className="d-flex justify-content-center">
-            <Page pageNumber={1} scale={width > 786 ? 1.7 : 0.6} />
-          </Document>
-        </Row>
-
-        <Row style={{ justifyContent: "center", position: "relative" }}>
-          <Button
-            variant="primary"
-            href={pdf}
-            target="_blank"
-            style={{ maxWidth: "250px" }}
-          >
-            <AiOutlineDownload />
-            &nbsp;Download CV
-          </Button>
+          <iframe
+            src={pdfPath}
+            title="resume"
+            width="100%"
+            height={width > 786 ? "800px" : "500px"}
+            style={{ border: 'none' }}
+          />
         </Row>
       </Container>
     </div>
