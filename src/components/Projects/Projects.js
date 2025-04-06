@@ -9,15 +9,6 @@ import Food_share from "../../Assets/Projects/Food_share.jpg";
 // import suicide from "../../Assets/Projects/suicide.png";
 import bitsOfCode from "../../Assets/Projects/blog.png";
 
-/*************  ✨ Windsurf Command ⭐  *************/
-/**
- * The Projects component renders a list of project cards, each representing a
- * recent project that the user has worked on. The component also includes a
- * heading and a brief description of the projects.
- * @returns {React.Component} A React component containing a list of project
- * cards.
- */
-/*******  b242cefe-bf38-4e2c-9d42-e255f16f4dab  *******/
 function Projects() {
   return (
     <Container fluid className="project-section">
